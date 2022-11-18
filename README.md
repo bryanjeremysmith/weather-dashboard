@@ -2,7 +2,7 @@
 
 ## Description
 
-This website will use the 5 Day Weather Forecast to retrieve weather data for cities and keep a search history.
+This website will use the 5 Day Weather Forecast (https://openweathermap.org/forecast5) to retrieve weather data for cities and keep a search history.
 
 ## Installation
 
