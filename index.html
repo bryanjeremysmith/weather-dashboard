@@ -5,29 +5,87 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <link
-            href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
-            rel="stylesheet"
-            integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
-            crossorigin="anonymous"
-        />
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Zenh87qX5JnK2Jl0vWa8Ck2rdkQ2Bzep5IDxbcnCeuOxjzrPF/et3URy9Bv1WTRi" crossorigin="anonymous">
         <link rel="stylesheet" href="./assets/css/style.css">
         <title>Weather Dashboard</title>
     </head>
     <body>
-        <div class="bg-primary text-white mx-2 px-2">
+        <div class="bg-primary bg-gradient text-white mx-1 px-2">
             <div class="row">
-                <h1 class="display-0 text-end">Weather Dashboard</h1>
+                <h1 class="text-end">Weather Dashboard</h1>
             </div>
         </div>
         <div class="container-fluid">
             <div class="row">
-                <div class="column">
+                <div class="d-flex flex-column col-2">
+                    <h2>Search for a City:</h2>
+                    <input class="searchInput" id="cityInput">
+                    <button class="searchButton">Search</button>
+                    <ol id="history">
+
+                    </ol>
+                </div>
+                <div class="column col-10">
+                    <div id="currentDayWeather" class="row border">
+                        <div id="currentCity" class="row">
+                            Atlanta
+                        </div>
+                        <div id="currentCityTemp" class="row">
+                            Temp
+                        </div>
+                        <div id="currentCityWind" class="row">
+                            Wind
+                        </div>
+                        <div id="currentCityHumidity" class="row">
+                            Humidity
+                        </div>
+                    </div>
+                    <div class="row border">
+                        <div class="row">
+                            5 Day Forecast:
+                        </div>
+                        <div class="col-2">
+                            <div id="day1Date" class="row">Day 1</div>
+                            <div id="day1Icon" class="row">weather icon</div>
+                            <div id="day1Temp" class="row">Temp</div>
+                            <div id="day1Wind" class="row">Wind</div>
+                            <div id="day1Humidity" class="row">Humidity</div>
+                        </div>
+                        <div class="col-2">
+                            <div id="day2Date" class="row">Day 2</div>
+                            <div id="day2Icon" class="row">weather icon</div>
+                            <div id="day2Temp" class="row">Temp</div>
+                            <div id="day2Wind" class="row">Wind</div>
+                            <div id="day2Humidity" class="row">Humidity</div>
+                        </div>
+                        <div class="col-2">
+                            <div id="day3Date" class="row">Day 3</div>
+                            <div id="day3Icon" class="row">weather icon</div>
+                            <div id="day3Temp" class="row">Temp</div>
+                            <div id="day3Wind" class="row">Wind</div>
+                            <div id="day3Humidity" class="row">Humidity</div>
+                        </div>
+                        <div class="col-2">
+                            <div id="day4Date" class="row">Day 4</div>
+                            <div id="day4Icon" class="row">weather icon</div>
+                            <div id="day4Temp" class="row">Temp</div>
+                            <div id="day4Wind" class="row">Wind</div>
+                            <div id="day4Humidity" class="row">Humidity</div>
+                        </div>
+                        <div class="col-2">
+                            <div id="day5Date" class="row">Day 5</div>
+                            <div id="day5Icon" class="row">weather icon</div>
+                            <div id="day5Temp" class="row">Temp</div>
+                            <div id="day5Wind" class="row">Wind</div>
+                            <div id="day5Humidity" class="row">Humidity</div>
+                        </div>
+                    </div>
 
                 </div>
+
             </div>
         </div>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
         <script src="./assets/js/script.js"></script>
     </body>
 </html>
