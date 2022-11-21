@@ -2,13 +2,6 @@
     --bs-gradient: linear-gradient(90deg, var(--bs-blue), var(--bs-indigo));
 }
 
-.searchButton {
-    background-color: var(--bs-blue);
-    color: white;
-    border-radius: 5px;
-    margin: 5px;
-}
-
 .searchInput{
     border-radius: 5px;
     margin: 5px;

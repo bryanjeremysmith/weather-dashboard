@@ -16,68 +16,72 @@
             </div>
         </div>
         <div class="container-fluid">
-            <div class="row">
-                <div class="d-flex flex-column col-2">
+            <div class="row justify-content">
+                <div class="d-flex flex-column col-2 justify-content-around">
                     <h2>Search for a City:</h2>
                     <input class="searchInput" id="cityInput">
-                    <button class="searchButton">Search</button>
-                    <ol id="history">
+                    <button class="btn btn-primary">Search</button>
+                    <ul id="history" class="list-group">
 
-                    </ol>
+                    </ul>
                 </div>
                 <div class="column col-10">
-                    <div id="currentDayWeather" class="row border">
-                        <div id="currentCity" class="row">
-                            Atlanta
-                        </div>
-                        <div id="currentCityTemp" class="row">
-                            Temp
-                        </div>
-                        <div id="currentCityWind" class="row">
-                            Wind
-                        </div>
-                        <div id="currentCityHumidity" class="row">
-                            Humidity
+                    <div class="row">
+                        <div class="card">
+                            <h3 class="card-header" id="currentCity">Atlanta</h3>
+                            <div class="card-body">
+                                <p id="currentCityTemp">Temp: Hot</p>
+                                <p id="currentCityWind">Wind: Windy</p>
+                                <p id="currentCityHumidity">Humidity: Humid</p>
+                            </div>
                         </div>
                     </div>
-                    <div class="row border">
-                        <div class="row">
-                            5 Day Forecast:
+                    <div class="row justify-content-between">
+                        <h2>5 Day Forecast</h2>
+                        <div class="card col-2">
+                            <h3 class="card-title" id="day1Date">Tomorrow</h3>
+                            <div class="card-body">
+                                <div id="day1Icon" class="row">weather icon</div>
+                                <div id="day1Temp" class="row">Temp: Less hot</div>
+                                <div id="day1Wind" class="row">Wind: Less windy</div>
+                                <div id="day1Humidity" class="row">Humidity: Less humid</div>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <div id="day1Date" class="row">Day 1</div>
-                            <div id="day1Icon" class="row">weather icon</div>
-                            <div id="day1Temp" class="row">Temp</div>
-                            <div id="day1Wind" class="row">Wind</div>
-                            <div id="day1Humidity" class="row">Humidity</div>
+                        <div class="card col-2">
+                            <h3 class="card-title" id="day2Date">Next day</h3>
+                            <div class="card-body">
+                                <div id="day2Icon" class="row">weather icon</div>
+                                <div id="day2Temp" class="row">Temp: Less hot</div>
+                                <div id="day2Wind" class="row">Wind: Less windy</div>
+                                <div id="day2Humidity" class="row">Humidity: Less humid</div>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <div id="day2Date" class="row">Day 2</div>
-                            <div id="day2Icon" class="row">weather icon</div>
-                            <div id="day2Temp" class="row">Temp</div>
-                            <div id="day2Wind" class="row">Wind</div>
-                            <div id="day2Humidity" class="row">Humidity</div>
+                        <div class="card col-2">
+                            <h3 class="card-title" id="day3Date">The Next day</h3>
+                            <div class="card-body">
+                                <div id="day3Icon" class="row">weather icon</div>
+                                <div id="day3Temp" class="row">Temp: Less hot</div>
+                                <div id="day3Wind" class="row">Wind: Less windy</div>
+                                <div id="day3Humidity" class="row">Humidity: Less humid</div>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <div id="day3Date" class="row">Day 3</div>
-                            <div id="day3Icon" class="row">weather icon</div>
-                            <div id="day3Temp" class="row">Temp</div>
-                            <div id="day3Wind" class="row">Wind</div>
-                            <div id="day3Humidity" class="row">Humidity</div>
+                        <div class="card col-2">
+                            <h3 class="card-title" id="day4Date">The Next day</h3>
+                            <div class="card-body">
+                                <div id="day4Icon" class="row">weather icon</div>
+                                <div id="day4Temp" class="row">Temp: Less hot</div>
+                                <div id="day4Wind" class="row">Wind: Less windy</div>
+                                <div id="day4Humidity" class="row">Humidity: Less humid</div>
+                            </div>
                         </div>
-                        <div class="col-2">
-                            <div id="day4Date" class="row">Day 4</div>
-                            <div id="day4Icon" class="row">weather icon</div>
-                            <div id="day4Temp" class="row">Temp</div>
-                            <div id="day4Wind" class="row">Wind</div>
-                            <div id="day4Humidity" class="row">Humidity</div>
-                        </div>
-                        <div class="col-2">
-                            <div id="day5Date" class="row">Day 5</div>
-                            <div id="day5Icon" class="row">weather icon</div>
-                            <div id="day5Temp" class="row">Temp</div>
-                            <div id="day5Wind" class="row">Wind</div>
-                            <div id="day5Humidity" class="row">Humidity</div>
+                        <div class="card col-2">
+                            <h3 class="card-title" id="day5Date">The Next day</h3>
+                            <div class="card-body">
+                                <div id="day5Icon" class="row">weather icon</div>
+                                <div id="day5Temp" class="row">Temp: Less hot</div>
+                                <div id="day5Wind" class="row">Wind: Less windy</div>
+                                <div id="day5Humidity" class="row">Humidity: Less humid</div>
+                            </div>
                         </div>
                     </div>
 
@@ -85,6 +89,10 @@
 
             </div>
         </div>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+            integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+            crossorigin="anonymous"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-OERcA2EqjJCMA+/3y+gxIOqMEjwtxJY7qPCqsdltbNJuaOe923+mo//f6V8Qbsw3" crossorigin="anonymous"></script>
         <script src="./assets/js/script.js"></script>
     </body>
