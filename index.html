@@ -17,10 +17,11 @@
         </div>
         <div class="container-fluid">
             <div class="row justify-content">
-                <div class="d-flex flex-column col-2 justify-content-around">
+                <div class="d-flex flex-column col-2 ">
                     <h2>Search for a City:</h2>
                     <input class="searchInput" id="cityInput">
-                    <button class="btn btn-primary">Search</button>
+                    <button class="btn btn-primary m-1 ">Search</button>
+                    <span class="border border-dark m-3"></span>
                     <ul id="history" class="list-group">
 
                     </ul>
@@ -28,7 +29,7 @@
                 <div id="dashboardData" class="column col-10">
                     <div class="row">
                         <div class="card">
-                            <h3 class="card-header" id="currentCity">Atlanta</h3>
+                            <h3 class="card-title" id="currentCity">Atlanta</h3>
                             <div class="card-body">
                                 <p id="currentCityTemp">Temp: Hot</p>
                                 <p id="currentCityWind">Wind: Windy</p>
@@ -37,8 +38,8 @@
                         </div>
                     </div>
                     <div class="row justify-content-between">
-                        <h2>5 Day Forecast</h2>
-                        <div class="card col-2">
+                        <h2>5-Day Forecast:</h2>
+                        <div class="card col-2" >
                             <h3 class="card-title" id="day1Date">Tomorrow</h3>
                             <div class="card-body">
                                 <img id="day1Icon" class="row"></img>

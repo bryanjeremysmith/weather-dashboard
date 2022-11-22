@@ -15,7 +15,7 @@ $(function () {
         $("#history")[0].innerHTML = "";
         for(var i = previousCities.length - 1; i >= 0; i--)
         {
-            var historyCity = $('<button type="button" class="btn btn-secondary m-1">' + previousCities[i].name + '</button>');
+            var historyCity = $('<button class="btn btn-secondary m-1">' + previousCities[i].name + '</button>');
             $("#history").append(historyCity);
             historyCity.on("click", function (){
                 console.log("clicked " + this.textContent);
@@ -75,7 +75,7 @@ $(function () {
     }
 
     function getTodaysWeatherFromLatLon(name, lat, lon){
-        $("#currentCity").text(name + " (" + dayjs().format("M/D/YYYY") + ")");
+        
         let url = currentWeatherQueryBaseURL + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
         fetch(url)
         .then(function (response){
@@ -84,10 +84,13 @@ $(function () {
         .then(function(data){
             console.log(data);
 
-            //TODOBJS
             $("#currentCityTemp").text("Temp: " + data.main.temp + " °F");
             $("#currentCityWind").text("Wind: " + data.wind.speed + " MPH");
             $("#currentCityHumidity").text("Humidity: " + data.main.humidity + " %");
+
+            let currentDayIcon = $("<img>").attr("src", weatherIconBaseURL + data.weather[0].icon + "@2x.png")
+
+            $("#currentCity").text(name + " (" + dayjs().format("M/D/YYYY") + ")").append(currentDayIcon);
 
             getWeatherIconById(weatherIconBaseURL + data.weather[0].icon + "@2x.png");
         })
@@ -123,20 +126,6 @@ $(function () {
             $("#dashboardData").removeClass("invisible").addClass("visible");
         })
         .catch(function (error){
-            console.log(error);
-        })
-
-    }
-
-    function getWeatherIconById(url){
-        fetch(url)
-        .then(function (response) {
-            return response.json();
-        })
-        .then(function (data){
-            console.log(data);
-        })
-        .catch(function(error){
             console.log(error);
         })
 
