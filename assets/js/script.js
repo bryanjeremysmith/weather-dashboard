@@ -5,22 +5,36 @@ $(function () {
     var cityName = "Portland";
     var limit = 1;
 
-    var currentWeatherQueryBaseURL = "http://api.openweathermap.org/data/2.5/weather?q=";// + city + "&appid=" + APIKey;
-    //var geoCodingQueryBaseURL = "http://api.openweathermap.org/geo/1.0/direct?q=";// + cityName + "," + stateCode + "," + countryCode + "&limit=" + limit + "&appid=" + APIKey;
-    var geoCodingQueryBaseURL = "http://api.openweathermap.org/geo/1.0/direct?q=";// + cityName + "&limit=" + limit + "&appid=" + APIKey;
+    var geoCodingQueryBaseURL = "http://api.openweathermap.org/geo/1.0/direct?q=";
+    var currentWeatherQueryBaseURL = "https://api.openweathermap.org/data/2.5/weather?lat=";
+    var weatherIconBaseURL = "http://openweathermap.org/img/wn/";//10d@2x.png";
     
-    var fiveDayForecastQueryBaseURL = "http://api.openweathermap.org/data/2.5/forecast?lat=";// + lat + "&lon=" + lon + "&appid=" + APIKey;
+    var fiveDayForecastQueryBaseURL = "http://api.openweathermap.org/data/2.5/forecast?lat=";
 
     function loadCityButtons(){
         $("#history")[0].innerHTML = "";
         for(var i = previousCities.length - 1; i >= 0; i--)
         {
-            var historyCity = $('<button type="button" class="list-group-item list-group-item-secondary m-1">' + previousCities[i].name + '</button>');
+            var historyCity = $('<button type="button" class="btn btn-secondary m-1">' + previousCities[i].name + '</button>');
             $("#history").append(historyCity);
+            historyCity.on("click", function (){
+                console.log("clicked " + this.textContent);
+
+                for(let i = 0; i < previousCities.length; i++)
+                {
+                    if(previousCities[i].name == this.textContent)
+                    {
+                        getTodaysWeatherFromLatLon(previousCities[i].name, previousCities[i].lat, previousCities[i].lon);
+
+                        get5DayForecastFromLatLon(previousCities[i].lat, previousCities[i].lon);
+                        return;
+                    }
+                }
+            });
         }
     }
 
-    function getData(url) {
+    function getLatLonFromCity(url) {
         fetch(url)
         .then(function (response) {
             return response.json();
@@ -51,26 +65,96 @@ $(function () {
                 localStorage.setItem("cities", JSON.stringify(previousCities));
                 loadCityButtons();
             }
+            getTodaysWeatherFromLatLon(city.name, city.lat, city.lon);
+
+            get5DayForecastFromLatLon(city.lat, city.lon);
         })
         .catch(function(error){
             console.log(error);
         })
     }
 
+    function getTodaysWeatherFromLatLon(name, lat, lon){
+        $("#currentCity").text(name + " (" + dayjs().format("M/D/YYYY") + ")");
+        let url = currentWeatherQueryBaseURL + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
+        fetch(url)
+        .then(function (response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+
+            //TODOBJS
+            $("#currentCityTemp").text("Temp: " + data.main.temp + " °F");
+            $("#currentCityWind").text("Wind: " + data.wind.speed + " MPH");
+            $("#currentCityHumidity").text("Humidity: " + data.main.humidity + " %");
+
+            getWeatherIconById(weatherIconBaseURL + data.weather[0].icon + "@2x.png");
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+    }
+
+    function get5DayForecastFromLatLon(lat, lon){
+        let url = fiveDayForecastQueryBaseURL + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
+        fetch(url)
+        .then(function (response){
+            return response.json();
+        })
+        .then(function(data){
+            console.log(data);
+
+            var j = 1;
+            for(var i = 0; i < data.list.length; i+=8)
+            {
+                var dayTemp = '#day' + j + 'Temp';
+                $(dayTemp).text("Temp: " + data.list[i].main.temp + " °F");
+                var dayWind = '#day' + j + 'Wind';
+                $(dayWind).text("Wind: " + data.list[i].wind.speed + " MPH");
+                var dayHumidity = '#day' + j + 'Humidity';
+                $(dayHumidity).text("Humidity: " + data.list[i].main.humidity + " %");
+                var dayIcon = '#day' + j + 'Icon';
+                $(dayIcon).attr("src", weatherIconBaseURL + data.list[i].weather[0].icon + "@2x.png")
+                $(dayIcon).attr("alt", data.list[i].weather[0].description)
+                
+                j++;
+            }
+            $("#dashboardData").removeClass("invisible").addClass("visible");
+        })
+        .catch(function (error){
+            console.log(error);
+        })
+
+    }
+
+    function getWeatherIconById(url){
+        fetch(url)
+        .then(function (response) {
+            return response.json();
+        })
+        .then(function (data){
+            console.log(data);
+        })
+        .catch(function(error){
+            console.log(error);
+        })
+
+    }
 
     var now = dayjs();
-    $("#currentCity").text("Portland, OR " + dayjs().format("M/D/YYYY"));
     $("#day1Date").text(dayjs().add(1, 'day').format("M/D/YYYY"));
     $("#day2Date").text(dayjs().add(2, 'day').format("M/D/YYYY"));
     $("#day3Date").text(dayjs().add(3, 'day').format("M/D/YYYY"));
     $("#day4Date").text(dayjs().add(4, 'day').format("M/D/YYYY"));
     $("#day5Date").text(dayjs().add(5, 'day').format("M/D/YYYY"));
+    $("#dashboardData").addClass("invisible");
 
     loadCityButtons();
   
-    //Listens for the on click of a button
+    //Listens for the on click of the Search button
     $("[class^='btn btn-primary']").on("click", function (){
         cityName = $("#cityInput")[0].value;
-        getData(geoCodingQueryBaseURL + cityName + "&limit=" + limit + "&appid=" + APIKey);
+        getLatLonFromCity(geoCodingQueryBaseURL + cityName + "&limit=1&appid=" + APIKey);
     });
 });
