@@ -2,7 +2,7 @@
 
 ## Description
 
-This website will use the 5 Day Weather Forecast (https://openweathermap.org/forecast5) to retrieve weather data for cities and keep a search history.
+This website will use the 5 Day Weather Forecast (https://openweathermap.org/forecast5) to retrieve weather data for cities and keep a search history of previously searched cities. Previously-searched cities are availabled to the user as a clickable button that retrieves weather data.
 
 ## Installation
 
@@ -11,6 +11,9 @@ https://bryanjeremysmith.github.io/weather-dashboard
 ## Usage
 
 ![Sample image of dashboard of quiz](./assets/images/06-server-side-apis-homework-demo.png)
+![Start up image of code](./assets/images/weather-dashboard-1.png)
+![Sample of a city's weather](./assets/images/weather-dashboard-2.png)
+
 
 ## Credits
 
