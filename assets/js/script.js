@@ -7,7 +7,7 @@ $(function () {
 
     var geoCodingQueryBaseURL = "https://api.openweathermap.org/geo/1.0/direct?q=";
     var currentWeatherQueryBaseURL = "https://api.openweathermap.org/data/2.5/weather?lat=";
-    var weatherIconBaseURL = "https://openweathermap.org/img/wn/";//10d@2x.png";
+    var weatherIconBaseURL = "https://openweathermap.org/img/wn/";
     
     var fiveDayForecastQueryBaseURL = "https://api.openweathermap.org/data/2.5/forecast?lat=";
 
@@ -40,9 +40,6 @@ $(function () {
             return response.json();
         })
         .then(function (data){
-
-            console.log(data);
-
             var city = {
                 name: data[0].name,
                 lat: data[0].lat,
@@ -74,15 +71,13 @@ $(function () {
         })
     }
 
-    function getTodaysWeatherFromLatLon(name, lat, lon){
-        
+    function getTodaysWeatherFromLatLon(name, lat, lon){        
         let url = currentWeatherQueryBaseURL + lat + "&lon=" + lon + "&appid=" + APIKey + "&units=imperial";
         fetch(url)
         .then(function (response){
             return response.json();
         })
         .then(function(data){
-            console.log(data);
 
             $("#currentCityTemp").text("Temp: " + data.main.temp + " °F");
             $("#currentCityWind").text("Wind: " + data.wind.speed + " MPH");
@@ -91,8 +86,6 @@ $(function () {
             let currentDayIcon = $("<img>").attr("src", weatherIconBaseURL + data.weather[0].icon + "@2x.png")
 
             $("#currentCity").text(name + " (" + dayjs().format("M/D/YYYY") + ")").append(currentDayIcon);
-
-            getWeatherIconById(weatherIconBaseURL + data.weather[0].icon + "@2x.png");
         })
         .catch(function (error){
             console.log(error);
@@ -106,8 +99,6 @@ $(function () {
             return response.json();
         })
         .then(function(data){
-            console.log(data);
-
             var j = 1;
             for(var i = 0; i < data.list.length; i+=8)
             {
@@ -128,7 +119,6 @@ $(function () {
         .catch(function (error){
             console.log(error);
         })
-
     }
 
     var now = dayjs();
@@ -141,7 +131,7 @@ $(function () {
 
     loadCityButtons();
   
-    //Listens for the on click of the Search button
+    //Listens for the click of the Search button
     $("[class^='btn btn-primary']").on("click", function (){
         cityName = $("#cityInput")[0].value;
         getLatLonFromCity(geoCodingQueryBaseURL + cityName + "&limit=1&appid=" + APIKey);
