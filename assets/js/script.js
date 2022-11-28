@@ -5,11 +5,11 @@ $(function () {
     var cityName = "Portland";
     var limit = 1;
 
-    var geoCodingQueryBaseURL = "http://api.openweathermap.org/geo/1.0/direct?q=";
+    var geoCodingQueryBaseURL = "https://api.openweathermap.org/geo/1.0/direct?q=";
     var currentWeatherQueryBaseURL = "https://api.openweathermap.org/data/2.5/weather?lat=";
-    var weatherIconBaseURL = "http://openweathermap.org/img/wn/";//10d@2x.png";
+    var weatherIconBaseURL = "https://openweathermap.org/img/wn/";//10d@2x.png";
     
-    var fiveDayForecastQueryBaseURL = "http://api.openweathermap.org/data/2.5/forecast?lat=";
+    var fiveDayForecastQueryBaseURL = "https://api.openweathermap.org/data/2.5/forecast?lat=";
 
     function loadCityButtons(){
         $("#history")[0].innerHTML = "";
