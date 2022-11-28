@@ -15,7 +15,7 @@ $(function () {
         $("#history")[0].innerHTML = "";
         for(var i = previousCities.length - 1; i >= 0; i--)
         {
-            var historyCity = $('<button class="btn btn-secondary m-1">' + previousCities[i].name + '</button>');
+            var historyCity = $('<button class="btn btn-secondary m-1 text-dark">' + previousCities[i].name + '</button>');
             $("#history").append(historyCity);
             historyCity.on("click", function (){
                 console.log("clicked " + this.textContent);

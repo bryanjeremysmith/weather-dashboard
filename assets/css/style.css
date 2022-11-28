@@ -1,5 +1,5 @@
 :root{
-    --bs-gradient: linear-gradient(90deg, var(--bs-blue), var(--bs-indigo));
+    --bs-gradient: linear-gradient(90deg, #465ab8, #261360);
 }
 
 .searchInput{
@@ -9,4 +9,16 @@
 
 .bg-gradient {
     background-image: var(--bs-gradient)!important;
+}
+
+.btn-primary {
+    --bs-btn-bg: #6991e3;
+}
+
+.btn-secondary {
+    --bs-btn-bg: #aeaeae;
+}
+
+div.card.col-2 {
+    --bs-card-bg: #323d4f;
 }
