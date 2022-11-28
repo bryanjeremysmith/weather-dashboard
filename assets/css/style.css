@@ -22,3 +22,9 @@
 div.card.col-2 {
     --bs-card-bg: #323d4f;
 }
+
+.card {
+    --bs-card-border-radius: 0rem;
+    --bs-card-border-width: 2px;
+    --bs-card-border-color: black;
+}
